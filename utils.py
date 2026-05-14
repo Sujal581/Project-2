@@ -81,7 +81,7 @@ def clean_data(df):
     return df
 
 
-def feature_engineering(df, save=False, path="cleaned_data.csv"):
+def feature_engineering(df, save=True, path="cleaned_data.csv"):
     df = df.copy()
     df = df.drop_duplicates()
     df.columns = df.columns.astype(str).str.strip()
@@ -159,6 +159,10 @@ def feature_engineering(df, save=False, path="cleaned_data.csv"):
             )
         except:
             pass
+
+    if save:
+        df.to_csv(path, index=False)
+        print(f"Cleaned dataset saved at: {path}")
 
     return df
 
