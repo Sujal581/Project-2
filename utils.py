@@ -81,8 +81,10 @@ def clean_data(df):
     return df
 
 
-def feature_engineering(df):
+def feature_engineering(df, save=False, path="cleaned_data.csv"):
     df = df.copy()
+    df = df.drop_duplicates()
+    df.columns = df.columns.astype(str).str.strip()
 
     if 'Real Shipping Days' in df.columns and 'Scheduled Shipping Days' in df.columns:
         try:
